@@ -1,10 +1,10 @@
-package io.github.fabiodelabruna.springbootmicroservices;
+package io.github.fabiodelabruna.ms.course;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootMicroservicesApplicationTests {
+class CourseApplicationTests {
 
     @Test
     void contextLoads() {

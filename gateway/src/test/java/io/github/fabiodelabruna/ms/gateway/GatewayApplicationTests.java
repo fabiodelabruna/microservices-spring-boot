@@ -1,4 +1,4 @@
-package io.github.fabiodelabruna.ms.course;
+package io.github.fabiodelabruna.ms.gateway;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CourseApplicationTests {
+public class GatewayApplicationTests {
 
     @Test
     public void contextLoads() {

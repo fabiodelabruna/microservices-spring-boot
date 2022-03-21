@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8082
 
 spring:
   application:
@@ -17,3 +17,11 @@ spring:
     url: jdbc:mysql://localhost:3306/course?createDatabaseIfNotExist=true&allowPublicKeyRetrieve=true&sslMode=DISABLED
   jmx:
     enabled: false
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+    register-with-eureka: true

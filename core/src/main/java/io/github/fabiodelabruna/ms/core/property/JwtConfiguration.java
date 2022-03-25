@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "jwt.config")
-public class JWTConfiguration {
+public class JwtConfiguration {
 
     private String loginURL = "/login/**";
 

@@ -1,45 +1,36 @@
 package io.github.fabiodelabruna.ms.auth.security.config;
 
 import io.github.fabiodelabruna.ms.auth.security.filter.JWTUsernamePasswordAuthenticationFilter;
-import io.github.fabiodelabruna.ms.core.property.JWTConfiguration;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.github.fabiodelabruna.ms.core.property.JwtConfiguration;
+import io.github.fabiodelabruna.ms.token.security.config.SecurityTokenConfig;
+import io.github.fabiodelabruna.ms.token.security.token.creator.TokenCreator;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-
-import javax.servlet.http.HttpServletResponse;
 
 @EnableWebSecurity
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
+public class SecurityCredentialsConfig extends SecurityTokenConfig {
 
     private final UserDetailsService userDetailsService;
 
-    private final JWTConfiguration jwtConfiguration;
+    private final TokenCreator tokenCreator;
+
+    public SecurityCredentialsConfig(final JwtConfiguration jwtConfiguration,
+                                     final @Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService,
+                                     final TokenCreator tokenCreator) {
+        super(jwtConfiguration);
+        this.tokenCreator = tokenCreator;
+        this.userDetailsService = userDetailsService;
+    }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http
-            .csrf().disable()
-            .cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
-            .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-                .exceptionHandling().authenticationEntryPoint((req, resp, e) -> resp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-            .and()
-                .addFilter(new JWTUsernamePasswordAuthenticationFilter(authenticationManager(), jwtConfiguration))
-            .authorizeRequests()
-                .antMatchers(jwtConfiguration.getLoginURL()).permitAll()
-                .antMatchers("/course/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated();
+        http.addFilter(new JWTUsernamePasswordAuthenticationFilter(authenticationManager(), jwtConfiguration, tokenCreator));
+        super.configure(http);
     }
 
     @Override

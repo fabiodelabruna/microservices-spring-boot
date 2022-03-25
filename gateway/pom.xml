@@ -17,9 +17,23 @@
 
     <properties>
         <java.version>11</java.version>
+        <io.github.fabiodelabruna.ms.core.version>1.0-SNAPSHOT</io.github.fabiodelabruna.ms.core.version>
+        <io.github.fabiodelabruna.ms.token.version>1.0-SNAPSHOT</io.github.fabiodelabruna.ms.token.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>io.github.fabiodelabruna.ms</groupId>
+            <artifactId>core</artifactId>
+            <version>${io.github.fabiodelabruna.ms.core.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.fabiodelabruna.ms</groupId>
+            <artifactId>token</artifactId>
+            <version>${io.github.fabiodelabruna.ms.token.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-zuul</artifactId>

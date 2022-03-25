@@ -80,6 +80,7 @@ public class TokenCreator {
 
         return new JWTClaimsSet.Builder()
                 .subject(applicationUser.getUsername())
+                .claim("userId", applicationUser.getId())
                 .claim("authorities", auth.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(toList()))
                 .issuer("https://fabiodelabruna.github.io")
                 .issueTime(new Date())

@@ -27,11 +27,13 @@
             <artifactId>core</artifactId>
             <version>${io.github.fabiodelabruna.ms.core.version}</version>
         </dependency>
+
         <dependency>
             <groupId>io.github.fabiodelabruna.ms</groupId>
             <artifactId>token</artifactId>
             <version>${io.github.fabiodelabruna.ms.token.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>

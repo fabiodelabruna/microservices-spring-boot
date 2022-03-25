@@ -23,7 +23,7 @@ import static java.util.Collections.emptyList;
 
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class JWTUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class JwtUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
 

@@ -25,6 +25,7 @@
         <java.version>11</java.version>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <nimbus-jose-jwt.version>7.0</nimbus-jose-jwt.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
     </properties>
 
     <dependencies>
@@ -52,6 +53,12 @@
             <groupId>com.nimbusds</groupId>
             <artifactId>nimbus-jose-jwt</artifactId>
             <version>${nimbus-jose-jwt.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
         </dependency>
 
         <dependency>

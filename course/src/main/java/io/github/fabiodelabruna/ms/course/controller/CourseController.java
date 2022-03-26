@@ -2,6 +2,8 @@ package io.github.fabiodelabruna.ms.course.controller;
 
 import io.github.fabiodelabruna.ms.core.model.Course;
 import io.github.fabiodelabruna.ms.course.service.CourseService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("v1/admin/course")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@Api("Endpoints to manage course")
 public class CourseController {
 
     private final CourseService courseService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "List all available courses", response = Course[].class)
     public ResponseEntity<Iterable<Course>> list(final Pageable pageable) {
         return new ResponseEntity<>(courseService.list(pageable), HttpStatus.OK);
     }

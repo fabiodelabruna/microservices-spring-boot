@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "02283125-fefb-470d-b54e-efc59b817a1f",
+		"name": "spring-boot-microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.headers.get('Authorization');",
+							"postman.setGlobalVariable(\"token\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{gatewayURL}}/auth/login",
+					"host": [
+						"{{gatewayURL}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Courses",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{gatewayURL}}/course/v1/admin/course",
+					"host": [
+						"{{gatewayURL}}"
+					],
+					"path": [
+						"course",
+						"v1",
+						"admin",
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{gatewayURL}}/auth/user/info",
+					"host": [
+						"{{gatewayURL}}"
+					],
+					"path": [
+						"auth",
+						"user",
+						"info"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

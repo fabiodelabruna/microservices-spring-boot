@@ -22,8 +22,8 @@ public class Course implements AbstractEntity {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @NotNull(message = "The field 'title' is mandatory")
     @Column(nullable = false)
+    @NotNull(message = "The field 'title' is mandatory")
     private String title;
 
 }

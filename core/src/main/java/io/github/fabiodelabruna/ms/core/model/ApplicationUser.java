@@ -1,5 +1,6 @@
 package io.github.fabiodelabruna.ms.core.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "application_user")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApplicationUser implements AbstractEntity {
 
     @Id
@@ -22,17 +24,18 @@ public class ApplicationUser implements AbstractEntity {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @NotNull(message = "The field 'username' is mandatory")
     @Column(nullable = false)
+    @NotNull(message = "The field 'username' is mandatory")
     private String username;
 
     @ToString.Exclude
-    @NotNull(message = "The field 'password' is mandatory")
     @Column(nullable = false)
+    @NotNull(message = "The field 'password' is mandatory")
     private String password;
 
-    @NotNull(message = "The field 'role' is mandatory")
+    @Builder.Default
     @Column(nullable = false)
+    @NotNull(message = "The field 'role' is mandatory")
     private String role = "USER";
 
     public ApplicationUser(@NotNull final ApplicationUser applicationUser) {

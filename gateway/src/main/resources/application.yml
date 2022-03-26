@@ -26,4 +26,4 @@ ribbon:
 jwt:
   config:
     login-url: /auth/login
-    type: encrypted
+    type: signed

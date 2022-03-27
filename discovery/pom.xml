@@ -17,9 +17,9 @@
 
     <properties>
         <java.version>11</java.version>
-        <jaxb-api.version>2.3.1</jaxb-api.version>
-        <javax.activation.version>1.1.1</javax.activation.version>
-        <jaxb-runtime.version>3.0.2</jaxb-runtime.version>
+        <jersey-apache-client4.version>1.19.4</jersey-apache-client4.version>
+        <jakarta.xml.bind-api.version>2.3.2</jakarta.xml.bind-api.version>
+        <jaxb-runtime.version>2.3.2</jaxb-runtime.version>
     </properties>
 
     <dependencies>
@@ -30,17 +30,17 @@
         <dependency>
             <groupId>com.sun.jersey.contribs</groupId>
             <artifactId>jersey-apache-client4</artifactId>
-            <version>1.19.4</version>
+            <version>${jersey-apache-client4.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>2.3.2</version>
+            <version>${jakarta.xml.bind-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
-            <version>2.3.2</version>
+            <version>${jaxb-runtime.version}</version>
         </dependency>
     </dependencies>
 
